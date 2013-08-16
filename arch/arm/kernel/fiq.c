@@ -91,11 +91,16 @@ void set_fiq_handler(void *start, unsigned int length)
 	memcpy(base + offset, start, length);
 	if (!cache_is_vipt_nonaliasing())
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flush_icache_range((unsigned long)base + offset, offset +
 				   length);
 =======
 		/*flush_icache_range(base + offset, offset + length);*/
 >>>>>>> 627cd15... ARM: Fix FIQ code on VIVT CPUs
+=======
+		/*flush_icache_range((unsigned long)base + offset, offset +
+				   length);*/
+>>>>>>> 22ab6a2... ARM: 7819/1: fiq: Cast the first argument of flush_icache_range()
 	flush_icache_range(0xffff0000 + offset, 0xffff0000 + offset + length);
 }
 
