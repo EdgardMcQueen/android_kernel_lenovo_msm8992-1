@@ -382,8 +382,12 @@ int dwc3_send_gadget_generic_command(struct dwc3 *dwc, int cmd, u32 param)
 		if (!(reg & DWC3_DGCMD_CMDACT)) {
 			dev_vdbg(dwc->dev, "Command Complete --> %d\n",
 					DWC3_DGCMD_STATUS(reg));
+<<<<<<< HEAD
 			ret = 0;
 			break;
+=======
+
+>>>>>>> 265f7f3... usb: dwc3: gadget: return error if command sent to DGCMD register fails
 		}
 
 		/*
