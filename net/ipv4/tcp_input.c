@@ -3296,6 +3296,7 @@ static void tcp_send_challenge_ack(struct sock *sk)
 		u32 half = (sysctl_tcp_challenge_ack_limit + 1) >> 1;
 
 		challenge_timestamp = now;
+<<<<<<< HEAD
 		ACCESS_ONCE(challenge_count) =  half +
 			   reciprocal_divide(prandom_u32(),
 				sysctl_tcp_challenge_ack_limit);
@@ -3303,6 +3304,15 @@ static void tcp_send_challenge_ack(struct sock *sk)
 	count = ACCESS_ONCE(challenge_count);
 	if (count > 0) {
 		ACCESS_ONCE(challenge_count) =  count - 1;
+=======
+		/*ACCESS_ONCE(challenge_count) = half +
+				  reciprocal_divide(prandom_u32(),
+					sysctl_tcp_challenge_ack_limit);
+	}
+	count = ACCESS_ONCE(challenge_count);
+	if (count > 0) {
+		ACCESS_ONCE(challenge_count) = count - 1;*/
+>>>>>>> b1f32b9... tcp: make challenge acks less predictable
 		NET_INC_STATS_BH(sock_net(sk), LINUX_MIB_TCPCHALLENGEACK);
 		tcp_send_ack(sk);
 	}
