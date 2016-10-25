@@ -694,7 +694,9 @@ static int can_set_system_xattr(struct inode *inode, const char *name,
 		}
 		if (acl) {
 			struct posix_acl *old_acl = acl;
-
+<<<<<<< HEAD
+=======
+>>>>>>> dd2421b... posix_acl: Clear SGID bit when setting file permissions
 			rc = posix_acl_update_mode(inode, &inode->i_mode, &acl);
 			posix_acl_release(old_acl);
 			if (rc < 0) {
