@@ -205,7 +205,11 @@ static int xhci_plat_remove(struct platform_device *dev)
 	struct usb_hcd	*hcd = platform_get_drvdata(dev);
 	struct xhci_hcd	*xhci = hcd_to_xhci(hcd);
 
+<<<<<<< HEAD
 	pm_runtime_disable(&dev->dev);
+=======
+	/*xhci->xhc_state |= XHCI_STATE_REMOVING;*/
+>>>>>>> a3fdfc6... usb: host: xhci-plat: Fix timeout on removal of hot pluggable xhci controllers
 
 	usb_remove_hcd(xhci->shared_hcd);
 	usb_put_hcd(xhci->shared_hcd);
