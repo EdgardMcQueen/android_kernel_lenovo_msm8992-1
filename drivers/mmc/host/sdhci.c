@@ -1437,7 +1437,13 @@ clock_set:
 			goto ret;
 		}
 		timeout--;
+<<<<<<< HEAD
 		udelay(1);
+=======
+/*		spin_unlock_irq(&host->lock);
+		usleep_range(900, 1100);
+		spin_lock_irq(&host->lock);*/
+>>>>>>> ecf229c... mmc: sdhci: Do not disable interrupts while waiting for clock
 	}
 
 	clk |= SDHCI_CLOCK_CARD_EN;
