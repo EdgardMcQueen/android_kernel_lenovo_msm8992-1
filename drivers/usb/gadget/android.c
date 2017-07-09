@@ -522,7 +522,7 @@ static void android_work(struct work_struct *data)
 		if(uevent_envp == disconnected && cdrom_dev != NULL)
 			fsg_store_file(cdrom_dev,NULL,NULL,0);
 	} else {
-		pr_info("%s: did not send uevent (%d %d %p)\n", __func__,
+		pr_info("%s: did not send uevent (%d %d %pK)\n", __func__,
 			 dev->connected, dev->sw_connected, cdev->config);
 	}
 }
@@ -3893,12 +3893,8 @@ static int usb_diag_update_pid_and_serial_num(u32 pid, const char *snum)
 		return -ENODEV;
 	}
 
-//	pr_debug("%s: dload:%p pid:%x serial_num:%s\n",
-//				__func__, diag_dload, pid, snum);
-	printk("%s:don't update pid dload:%p pid:%x serial_num:%s\n",
-		__func__, diag_dload, pid, snum);
-	return 0;
-
+	pr_debug("%s: dload:%pK pid:%x serial_num:%s\n",
+				__func__, diag_dload, pid, snum);
 
 	/* update pid */
 	local_diag_dload.magic_struct.pid = PID_MAGIC_ID;

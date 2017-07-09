@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -666,7 +666,7 @@ static int qpnp_rtc_probe(struct spmi_device *spmi)
 	}
 
 	/* Init power_on_alarm after adding rtc device */
-	//power_on_alarm_init();
+	power_on_alarm_init();
 
 	/* Request the alarm IRQ */
 	rc = request_any_context_irq(rtc_dd->rtc_alarm_irq,

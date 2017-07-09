@@ -407,17 +407,11 @@ static int32_t msm_sensor_create_pd_settings(void *setting,
 
 #ifdef CONFIG_COMPAT
 	if (is_compat_task()) {
-		int i = 0;
-		struct msm_sensor_power_setting32 *power_setting_iter =
-		(struct msm_sensor_power_setting32 *)compat_ptr((
-		(struct msm_camera_sensor_slave_info32 *)setting)->
-		power_setting_array.power_setting);
-
-		for (i = 0; i < size_down; i++) {
-			pd[i].config_val = power_setting_iter[i].config_val;
-			pd[i].delay = power_setting_iter[i].delay;
-			pd[i].seq_type = power_setting_iter[i].seq_type;
-			pd[i].seq_val = power_setting_iter[i].seq_val;
+		rc = msm_sensor_get_pw_settings_compat(
+			pd, pu, size_down);
+		if (rc < 0) {
+			pr_err("failed");
+			return -EFAULT;
 		}
 	} else
 #endif
@@ -1187,7 +1181,7 @@ static int32_t msm_sensor_driver_parse(struct msm_sensor_ctrl_t *s_ctrl)
 
 	/* Store sensor control structure in static database */
 	g_sctrl[s_ctrl->id] = s_ctrl;
-	pr_err("g_sctrl[%d] %p", s_ctrl->id, g_sctrl[s_ctrl->id]);
+	CDBG("g_sctrl[%d] %p", s_ctrl->id, g_sctrl[s_ctrl->id]);
 
 	return rc;
 

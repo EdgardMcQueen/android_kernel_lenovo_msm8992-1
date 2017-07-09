@@ -160,7 +160,6 @@ void account_user_time(struct task_struct *p, cputime_t cputime,
 
 	/* Account power usage for user time */
 	acct_update_power(p, cputime);
-
 }
 
 /*
